@@ -125,6 +125,7 @@ SELECT
   COUNT(DISTINCT order_id) AS unique_order_count
 FROM pizza_runner.customer_orders
 
+
 --How many successful orders were delivered by each runner?
 
 SELECT 
@@ -136,16 +137,12 @@ GROUP BY runner_id;
 
 --How many of each type of pizza was delivered?
 
-SELECT 
-  p.pizza_name, 
-  COUNT(c.pizza_id) AS delivered_pizza_count
-FROM pizza_runner.customer_orders AS c
-JOIN pizza_runner.runner_orders AS r
-  ON c.order_id = r.order_id
-JOIN pizza_runner.pizza_names AS p
-  ON c.pizza_id = p.pizza_id
-WHERE r.distance != 'null'
-GROUP BY p.pizza_name;
+SELECT pizza_id, COUNT(duration) AS number_of_successful_orders
+FROM pizza_runner.runner_orders AS runner_orders
+INNER JOIN pizza_runner.customer_orders AS customer_orders
+    ON runner_orders.order_id = customer_orders.order_id
+GROUP BY pizza_id
+ORDER BY pizza_id;
 
 --How many Vegetarian and Meatlovers were ordered by each customer?
 
@@ -161,44 +158,44 @@ ORDER BY c.customer_id;
 
 --What was the maximum number of pizzas delivered in a single order?
 
-WITH pizza_count_cte AS
-(
-  SELECT 
-    c.order_id, 
-    COUNT(c.pizza_id) AS pizza_per_order
-  FROM pizza_runner.customer_orders AS c
-  JOIN pizza_runner.runner_orders AS r
-    ON c.order_id = r.order_id
-  WHERE r.distance != 'null'
-  GROUP BY c.order_id
-)
-
-SELECT 
-  MAX(pizza_per_order) AS pizza_count
-FROM pizza_count_cte;
+WITH order_pizza_numbers AS
+(SELECT order_id, COUNT(*) AS number_of_pizzas
+ FROM pizza_runner.customer_orders
+ GROUP BY order_id)
+SELECT MAX(number_of_pizzas) AS maximum_pizzas
+FROM order_pizza_numbers;
 
 --For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
 
-SELECT 
-  c.customer_id,
-  SUM(
-    CASE WHEN c.exclusions <> ' ' OR c.extras <> ' ' THEN 1
-    ELSE 0
-    END) AS at_least_1_change,
-  SUM(
-    CASE WHEN c.exclusions = ' ' AND c.extras = ' ' THEN 1 
-    ELSE 0
-    END) AS no_change
-FROM pizza_runner.customer_orders AS c
-JOIN pizza_runner.runner_orders AS r
-  ON c.order_id = r.order_id
-WHERE r.distance != 'null'
-GROUP BY c.customer_id
-ORDER BY c.customer_id;
+
 
 --How many pizzas were delivered that had both exclusions and extras?
+
+
+
 --What was the total volume of pizzas ordered for each hour of the day?
+
+SELECT date_part('hour', order_time)::int AS day_hour, COUNT(*) AS volume
+FROM pizza_runner.customer_orders AS customer_orders
+GROUP BY day_hour
+ORDER BY day_hour;
+
 --What was the volume of orders for each day of the week?
+
+WITH weekday_volumes AS
+(SELECT to_char(order_time, 'dy') as weekday, COUNT(*) AS volume
+ FROM pizza_runner.customer_orders
+ GROUP BY weekday)
+SELECT *
+FROM weekday_volumes
+ORDER BY CASE WHEN weekday = 'mon' THEN 1
+              WHEN weekday = 'tue' THEN 2
+              WHEN weekday = 'wed' THEN 3
+              WHEN weekday = 'thu' THEN 4
+              WHEN weekday = 'fri' THEN 5
+              WHEN weekday = 'sat' THEN 6
+              WHEN weekday = 'sun' THEN 7
+              END;
 
 --How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
 --What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
