@@ -15392,9 +15392,3 @@ SELECT
   total_quantity
 FROM top_selling_cte
 WHERE ranking = 1;
-
---What is the percentage split of revenue by product for each segment?
---What is the percentage split of revenue by segment for each category?
---What is the percentage split of total revenue by category?
---What is the total transaction “penetration” for each product? (hint: penetration = number of transactions where at least 1 quantity of a product was purchased divided by total number of transactions)
---What is the most common combination of at least 1 quantity of any 3 products in a 1 single transaction?
