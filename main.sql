@@ -86,6 +86,55 @@ select p.maker, avg(l.screen)
 from Product p join Laptop l on p.model = l.model
 group by p.maker;
 
+select maker, count(maker)
+from Product
+where type = 'PC'
+group by maker
+having count(maker) >= 3;
+
+select p.maker, max(PC.price)
+from Product p join PC on p.model = PC.model
+group by p.maker;
+
+select speed, avg(price)
+from PC
+where speed > 600
+group by speed
+
+select maker
+from Product
+INTERSECT
+select p.maker 
+from Product p join pc on p.model = pc.model
+where pc.speed >= 750
+INTERSECT
+select p.maker
+from Product p join Laptop l on p.model = l.model
+where l.speed >= 750
+
+select model
+from(
+select model, price
+from pc
+union
+select model, price
+from Laptop
+union
+select model, price
+from Printer
+) t1
+where price = (
+select max(price)
+from(
+select price
+from pc
+union
+select price
+from Laptop
+union
+select price
+from Printer
+) t2)
 
 
 
