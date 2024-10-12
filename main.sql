@@ -65,4 +65,15 @@ select c.class, s.name, c.country
 from Ships s join Classes c on s.class = c.class
 where c.numGuns >= 10;
 
+select hd
+from PC
+group by hd
+having count(hd)>=2;
+
+select distinct pc.model, pc1.model, pc.speed, pc.ram
+from PC pc, PC pc1
+where pc.speed = pc1.speed and pc.ram = pc1.ram and pc.model > pc1. model;
+
+
+
 
