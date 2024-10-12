@@ -99,7 +99,7 @@ group by p.maker;
 select speed, avg(price)
 from PC
 where speed > 600
-group by speed
+group by speed;
 
 select maker
 from Product
@@ -110,7 +110,7 @@ where pc.speed >= 750
 INTERSECT
 select p.maker
 from Product p join Laptop l on p.model = l.model
-where l.speed >= 750
+where l.speed >= 750;
 
 select model
 from(
@@ -134,7 +134,18 @@ from Laptop
 union
 select price
 from Printer
-) t2)
+) t2);
+
+select avg(price)
+from(
+select l.price
+from Product p join Laptop l on p.model = l.model 
+where maker = 'A'
+union all
+select pc.price
+from Product p join PC on p.model = pc.model 
+where maker = 'A'
+) t1
 
 
 
