@@ -74,6 +74,19 @@ select distinct pc.model, pc1.model, pc.speed, pc.ram
 from PC pc, PC pc1
 where pc.speed = pc1.speed and pc.ram = pc1.ram and pc.model > pc1. model;
 
+select distinct p.type, l.model, l.speed
+from Laptop l, Product p
+where l.speed < (select min(speed) from PC) and p.type = 'Laptop';
+
+select distinct p.maker, pr.price
+from Product p join Printer pr on p.model = pr.model
+where color = 'y' and price = (select min(price) from Printer where color = 'y');
+
+select p.maker, avg(l.screen)
+from Product p join Laptop l on p.model = l.model
+group by p.maker;
+
+
 
 
 
