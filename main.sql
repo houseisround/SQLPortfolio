@@ -34,3 +34,35 @@ select p.model, pr.price
 from Product p join Printer pr on p.model = pr.model
 where p.maker = 'B';
 
+select maker
+from Product
+where type = 'PC'
+except
+select maker
+from Product
+where type = 'Laptop';
+
+select distinct p.maker
+from Product p join PC pc on p.model = pc.model
+where speed >= 450;
+
+select model, price
+from Printer
+where price = (select max(price) from Printer);
+
+select avg(speed)
+from PC;
+
+select avg(speed)
+from Laptop
+where price > 1000;
+
+select avg(pc.speed)
+from Product p join PC pc on p.model = pc.model
+where p.maker = 'A';
+
+select c.class, s.name, c.country
+from Ships s join Classes c on s.class = c.class
+where c.numGuns >= 10;
+
+
