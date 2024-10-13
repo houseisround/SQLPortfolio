@@ -147,6 +147,21 @@ from Product p join PC on p.model = pc.model
 where maker = 'A'
 ) t1
 
+select maker, avg(hd)
+from Product p join PC on p.model = pc.model
+where maker in (select maker from Product where type = 'Printer')
+group by maker
 
+select class, country
+from Classes
+where bore >=16
+
+select ship
+from Outcomes
+where battle = 'North Atlantic' and  result = 'sunk'
+
+select distinct s.name
+from Classes c join Ships s on c.class = s.class
+where s.launched >= 1922 and c.displacement > 35000 and c.type = 'bb'
 
 
