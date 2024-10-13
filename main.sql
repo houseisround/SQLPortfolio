@@ -164,4 +164,34 @@ select distinct s.name
 from Classes c join Ships s on c.class = s.class
 where s.launched >= 1922 and c.displacement > 35000 and c.type = 'bb'
 
+Select country
+from Classes 
+where type = 'bb'
+INTERSECT
+Select country
+from Classes 
+where type = 'bc'
+
+select ship, battle
+from Outcomes 
+where result = 'sunk'
+
+select name
+from Ships 
+where name like 'R%'
+union 
+select ship
+from Outcomes 
+where ship like 'R%'
+
+select name
+from Ships 
+where name like '% % %'
+union
+select ship
+from Outcomes 
+where ship like '% % %'
+
+
+
 
