@@ -231,6 +231,12 @@ select min(t) from (select count(model) t from Product group by maker) t1
 insert into PC (code, model, speed, ram, hd, cd, price)
 values (20, 2111, 950, 512, 60, '52x', 1100)
 
+insert into Product
+values ('Z', 4003, 'Printer'),
+('Z', 4001, 'PC'),
+('Z', 4002, 'Laptop')
 
+insert into PC
+values (22, 4444, 1200, DEFAULT, DEFAULT, DEFAULT, 1350)
 
 
