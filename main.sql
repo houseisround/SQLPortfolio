@@ -216,6 +216,21 @@ order by model desc) and model not in (select top 3 model
 from Product
 order by model asc)
 
+select maker, count(model)
+from Product
+group by maker
+having count(model) in
+(
+select max(t) from (select count(model) t from Product group by maker) t1
+)
+or count(model) in
+(
+select min(t) from (select count(model) t from Product group by maker) t1
+)
+
+insert into PC (code, model, speed, ram, hd, cd, price)
+values (20, 2111, 950, 512, 60, '52x', 1100)
+
 
 
 
