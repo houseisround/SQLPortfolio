@@ -192,6 +192,30 @@ select ship
 from Outcomes 
 where ship like '% % %'
 
+select s.name
+from Ships s join Classes c on s.class = c.class
+where c.bore = '16'
+union
+select o.ship
+from Outcomes o join Classes c on o.ship = c.class 
+where c.bore = '16'
+
+select distinct o.battle
+from Ships s join Outcomes o on s.name = o.ship
+where s.class = 'Kongo'
+
+select type
+from Product
+where type like 'p%'
+
+select *
+from Product
+where model not in (select top 3 model
+from Product
+order by model desc) and model not in (select top 3 model
+from Product
+order by model asc)
+
 
 
 
