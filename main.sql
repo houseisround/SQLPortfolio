@@ -268,6 +268,24 @@ where name in (
     from Outcomes 
     where result ='sunk')
 
+update Classes 
+set bore = bore*2.5, 
+displacement = round(displacement/1.1, 0)
+
+delete from PC 
+where code not in (
+select max(code) 
+from pc
+group by model)
+
+update Laptop
+set screen = screen + 1,
+price = price - 100
+where model in (
+select model
+from Product
+where maker in ('E', 'B') and type = 'Laptop'
+)
 
 
 
