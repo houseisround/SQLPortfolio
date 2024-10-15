@@ -297,5 +297,20 @@ values
 ('Rodney', (select distinct name from Battles where date= '1944-10-25') , 'sunk'),
 ('Nelson', (select distinct name from Battles where date= '1945-01-28') , 'damaged')
 
+delete from Product
+where model not in (
+select model from pc
+union
+select model from laptop
+union
+select model from Printer
+)
+
+delete from PC
+where hd in (
+    select distinct top 3 hd 
+    from pc 
+    order by hd)
+
 
 
