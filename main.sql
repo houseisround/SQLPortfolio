@@ -257,4 +257,18 @@ ram = (select min(ram) from pc)
 or
 hd = (select min(hd) from pc)
 
+update Product
+set maker = 'Z' 
+where maker = 'A' 
+and type = 'Printer'
+
+delete from Ships 
+where name in (
+    select ship 
+    from Outcomes 
+    where result ='sunk')
+
+
+
+
 
