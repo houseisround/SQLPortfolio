@@ -232,11 +232,29 @@ insert into PC (code, model, speed, ram, hd, cd, price)
 values (20, 2111, 950, 512, 60, '52x', 1100)
 
 insert into Product
-values ('Z', 4003, 'Printer'),
+values 
+('Z', 4003, 'Printer'),
 ('Z', 4001, 'PC'),
 ('Z', 4002, 'Laptop')
 
 insert into PC
 values (22, 4444, 1200, DEFAULT, DEFAULT, DEFAULT, 1350)
+
+insert into pc (code, model, speed, ram, hd, price)
+select 
+min(code)+20, 
+model + 1000, 
+max(speed), 
+max(ram)*2,
+max(hd)*2,
+max(price)/1.5
+from Laptop
+group by model
+
+delete from pc
+where 
+ram = (select min(ram) from pc) 
+or
+hd = (select min(hd) from pc)
 
 
