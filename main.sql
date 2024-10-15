@@ -287,6 +287,15 @@ from Product
 where maker in ('E', 'B') and type = 'Laptop'
 )
 
+insert into Outcomes (ship, battle, result)
+select 'Rodney' ship, (select distinct name from Battles where date= '1944-10-25') battle, 'sunk' result
+union 
+select 'Nelson', (select distinct name from Battles where date= '1945-01-28') , 'damaged'
+
+insert into Outcomes (ship, battle, result)
+values 
+('Rodney', (select distinct name from Battles where date= '1944-10-25') , 'sunk'),
+('Nelson', (select distinct name from Battles where date= '1945-01-28') , 'damaged')
 
 
 
