@@ -439,6 +439,37 @@ from customer
 select * 
 from order o join customer c on o.customerID = c.customerID
 
+select country, count(customerID)
+from customer
+group by country
+
+select country, count(customerID)
+from customer
+group by country
+order by count(customerID) desc
+
+create database testDB
+
+drop database testDB
+
+create table person (
+    personid int,
+    lastname varchar(255),
+    firstname varchar(255),
+    addres varchar(255),
+    city varchar(255)
+)
+
+drop table person
+
+truncate table person
+
+alter table person
+add birthday date
+
+alter table person
+drop column birthday
+
 
 
 
