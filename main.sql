@@ -359,6 +359,17 @@ where postalcode is null
 select * from customer
 where postalcode is not null 
 
+update customer
+set city = 'Свердловск'
+
+update customer
+set city = 'Свердловск'
+where country = 'Россия'
+
+update customer
+set city = 'Свердловск', country = 'Россия'
+where customerID = 32
+
 
 
 
