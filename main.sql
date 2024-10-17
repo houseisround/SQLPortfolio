@@ -400,6 +400,47 @@ where city like '%a'
 select * from customer
 where city like '%a%'
 
+select * from customer
+where city like 'a%b'
+
+select * from customer
+where city not like 'a%'
+
+select * from customer
+where city like '_a%'
+
+select * from customer
+where city like '[acs]%'
+
+select * from customer
+where city like '[a-f]%'
+
+select * from customer
+where city like '[!acf]%'
+
+select * from customer
+where country in ('Норвегия', 'Франция')
+
+select * from customer
+where country not in ('Норвегия', 'Франция')
+
+select * from Product
+where price between 10 and 20
+
+select * from Product
+where price not between 10 and 20
+
+select * from customer
+where Product between 'aa' and 'cc'
+
+select customerID cid, addres ads, postalcode pc
+from customer
+
+select * 
+from order o join customer c on o.customerID = c.customerID
+
+
+
 
 
 
