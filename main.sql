@@ -337,6 +337,28 @@ select * from customer
 where city = 'Пермь'
 and postalcode = 614000
 
+select * from  customer
+where city = 'Пермь'
+or city = 'Москва'
+
+select * from customer
+order by city
+
+select * from customer
+order by city desc 
+
+select * from customer
+order by 
+
+insert into customer (customername, addres, city, postalcode, country)
+values ('Андрей', 'Пермь', 'Пермь', 614000, 'Россия')
+
+select * from customer
+where postalcode is null 
+
+select * from customer
+where postalcode is not null 
+
 
 
 
