@@ -312,5 +312,31 @@ where hd in (
     from pc 
     order by hd)
 
+select *
+from customers
+
+select city
+from customers
+
+select distinct country
+from customers
+
+select *
+from customers
+where city = 'Пермь'
+
+select *
+from customers
+where not city = 'Пермь'
+
+select *
+from customers
+where customerID = 32
+
+select * from customer
+where city = 'Пермь'
+and postalcode = 614000
+
+
 
 
