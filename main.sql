@@ -370,6 +370,36 @@ update customer
 set city = 'Свердловск', country = 'Россия'
 where customerID = 32
 
+delete from customer
+where country = 'Россия'
+
+delete from customer
+
+select min(price)
+from Product
+
+select max(price)
+from Product
+
+select count(*)
+from Product
+where price = 18
+
+select avg(price)
+from Product
+
+select sum(price)
+from Product
+
+select * from customer
+where city like 'a%'
+
+select * from customer
+where city like '%a'
+
+select * from customer
+where city like '%a%'
+
 
 
 
