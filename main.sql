@@ -513,7 +513,19 @@ select distinct manager_id
 from Employees
 where manager_id is not null
 
+select *
+from Employees
+where length (firstname) > 10
 
+select name
+from passenger
+
+select name
+from company
+
+select *
+from trip
+where town_from = 'Moscow'
 
 
 
