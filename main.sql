@@ -506,7 +506,16 @@ from Employees
 where firstname like '%____%'
 
 select * 
-from
+from Employees
+where salary between 8000 and 9000
+
+select distinct manager_id
+from Employees
+where manager_id is not null
+
+
+
+
 
 
 
