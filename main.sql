@@ -527,6 +527,12 @@ select *
 from trip
 where town_from = 'Moscow'
 
+select name
+from passenger
+where name like '%man'
+
+
+
 
 
 
