@@ -470,7 +470,43 @@ add birthday date
 alter table person
 drop column birthday
 
+select *
+from Employees
 
+select * 
+from Employees
+where firstname = 'David'
+
+select * 
+from Employees
+where job_id = 'IT_PROG'
+
+select
+from Employees
+where department_id = 50 and salary > 400
+
+select * 
+from Employees
+where department_id in (20, 30)
+
+select * 
+from Employees
+where firstname like '%a'
+
+select *
+from Employees
+where department_id in (50, 80) and commission_pct is not null
+
+select * 
+from Employees
+where firstname like '%n%n%'
+
+select * 
+from Employees
+where firstname like '%____%'
+
+select * 
+from
 
 
 
