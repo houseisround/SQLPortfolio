@@ -555,9 +555,27 @@ from trip t left join Pass_in_trip p on t.id = p.trip
 group by t.id
 
 select t.town_to
-from trip t join Pass_in_trip p on t.id = p.trip
+from trip t 
+join Pass_in_trip p on t.id = p.trip
 join passenger pa on p.passenger = pa.id
 where pa.name = 'Bruce Willis'
+
+select t.time_in 
+from trip t 
+join Pass_in_trip p on t.id = p.trip
+join passenger pa on pa.id = p.passenger
+where pa.name = 'Steve Martin' and t.town_to='London'
+
+select distinct f.status
+from FamilyMembers f
+join Payments p on f.member_id = p.family_member
+join goods g on p.good = g.good_id
+where g.good_name = 'potato'
+
+select member_name
+from FamilyMembers
+where status = 'mother'
+
 
 
 
