@@ -531,6 +531,14 @@ select name
 from passenger
 where name like '%man'
 
+select count(*) count
+from trip
+where plane = 'TU-134'
+
+select distinct name
+from trip t join company c on t.company = c.id
+where plane = 'Boeing'
+
 
 
 
