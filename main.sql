@@ -539,6 +539,17 @@ select distinct name
 from trip t join company c on t.company = c.id
 where plane = 'Boeing'
 
+select distinct plane
+from trip
+where town_to = 'Moscow'
+
+select name
+from company
+where id = (
+    select company 
+    from trip 
+    where town_from = 'Vladivostok')
+
 
 
 
