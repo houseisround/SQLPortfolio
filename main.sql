@@ -483,7 +483,8 @@ where job_id = 'IT_PROG'
 
 select
 from Employees
-where department_id = 50 and salary > 400
+where department_id = 50 
+and salary > 400
 
 select * 
 from Employees
@@ -495,7 +496,8 @@ where firstname like '%a'
 
 select *
 from Employees
-where department_id in (50, 80) and commission_pct is not null
+where department_id in (50, 80) 
+and commission_pct is not null
 
 select * 
 from Employees
@@ -575,6 +577,34 @@ where g.good_name = 'potato'
 select member_name
 from FamilyMembers
 where status = 'mother'
+
+select count(*) count 
+from trip
+where town_from = 'Rostov' 
+and town_to = 'Moscow'
+
+select count(*) count
+from class
+where name like '10%'
+
+select *
+from student
+where address like 'ul. Pushkina%'
+
+select count(*) count 
+from student
+where first_name = 'Anna'
+
+select count(*) count 
+from class c join Student_in_class s on c.id = s.class
+where name like '10 B'
+
+select distinct t.start_pair
+from Schedule s 
+join Timepair t on s.number_pair = t.id
+where s.number_pair = 4
+
+
 
 
 
