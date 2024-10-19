@@ -550,6 +550,15 @@ where id = (
     from trip 
     where town_from = 'Vladivostok')
 
+select t.id, count(p.passenger) count
+from trip t left join Pass_in_trip p on t.id = p.trip
+group by t.id
+
+select t.town_to
+from trip t join Pass_in_trip p on t.id = p.trip
+join passenger pa on p.passenger = pa.id
+where pa.name = 'Bruce Willis'
+
 
 
 
