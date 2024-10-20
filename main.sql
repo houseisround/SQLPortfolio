@@ -19,19 +19,23 @@ from PC
 where cd in ('12x', '24x') and price < 600;
 
 select distinct p.maker, l.speed
-from Product p join Laptop l on p.model = l.model
+from Product p 
+join Laptop l on p.model = l.model
 where hd >= 10;
 
 select p.model, pc.price
-from Product p join PC pc on p.model = pc.model
+from Product p 
+join PC pc on p.model = pc.model
 where p.maker = 'B'
 UNION
 select p.model, l.price
-from Product p join Laptop l on p.model = l.model
+from Product p 
+join Laptop l on p.model = l.model
 where p.maker = 'B'
 UNION
 select p.model, pr.price
-from Product p join Printer pr on p.model = pr.model
+from Product p 
+join Printer pr on p.model = pr.model
 where p.maker = 'B';
 
 select maker
@@ -43,7 +47,8 @@ from Product
 where type = 'Laptop';
 
 select distinct p.maker
-from Product p join PC pc on p.model = pc.model
+from Product p 
+join PC pc on p.model = pc.model
 where speed >= 450;
 
 select model, price
@@ -58,11 +63,13 @@ from Laptop
 where price > 1000;
 
 select avg(pc.speed)
-from Product p join PC pc on p.model = pc.model
+from Product p 
+join PC pc on p.model = pc.model
 where p.maker = 'A';
 
 select c.class, s.name, c.country
-from Ships s join Classes c on s.class = c.class
+from Ships s 
+join Classes c on s.class = c.class
 where c.numGuns >= 10;
 
 select hd
@@ -72,18 +79,29 @@ having count(hd)>=2;
 
 select distinct pc.model, pc1.model, pc.speed, pc.ram
 from PC pc, PC pc1
-where pc.speed = pc1.speed and pc.ram = pc1.ram and pc.model > pc1. model;
+where pc.speed = pc1.speed 
+and pc.ram = pc1.ram 
+and pc.model > pc1. model;
 
 select distinct p.type, l.model, l.speed
 from Laptop l, Product p
-where l.speed < (select min(speed) from PC) and p.type = 'Laptop';
+where l.speed < (
+    select min(speed) 
+    from PC) 
+    and p.type = 'Laptop';
 
 select distinct p.maker, pr.price
-from Product p join Printer pr on p.model = pr.model
-where color = 'y' and price = (select min(price) from Printer where color = 'y');
+from Product p 
+join Printer pr on p.model = pr.model
+where color = 'y' 
+and price = (
+    select min(price) 
+    from Printer 
+    where color = 'y');
 
 select p.maker, avg(l.screen)
-from Product p join Laptop l on p.model = l.model
+from Product p 
+join Laptop l on p.model = l.model
 group by p.maker;
 
 select maker, count(maker)
@@ -93,7 +111,8 @@ group by maker
 having count(maker) >= 3;
 
 select p.maker, max(PC.price)
-from Product p join PC on p.model = PC.model
+from Product p 
+join PC on p.model = PC.model
 group by p.maker;
 
 select speed, avg(price)
@@ -105,11 +124,13 @@ select maker
 from Product
 INTERSECT
 select p.maker 
-from Product p join pc on p.model = pc.model
+from Product p 
+join pc on p.model = pc.model
 where pc.speed >= 750
 INTERSECT
 select p.maker
-from Product p join Laptop l on p.model = l.model
+from Product p 
+join Laptop l on p.model = l.model
 where l.speed >= 750;
 
 select model
@@ -139,17 +160,23 @@ from Printer
 select avg(price)
 from(
 select l.price
-from Product p join Laptop l on p.model = l.model 
+from Product p 
+join Laptop l on p.model = l.model 
 where maker = 'A'
 union all
 select pc.price
-from Product p join PC on p.model = pc.model 
+from Product p 
+join PC on p.model = pc.model 
 where maker = 'A'
 ) t1
 
 select maker, avg(hd)
-from Product p join PC on p.model = pc.model
-where maker in (select maker from Product where type = 'Printer')
+from Product p 
+join PC on p.model = pc.model
+where maker in (
+    select maker 
+    from Product 
+    where type = 'Printer')
 group by maker
 
 select class, country
@@ -161,8 +188,11 @@ from Outcomes
 where battle = 'North Atlantic' and  result = 'sunk'
 
 select distinct s.name
-from Classes c join Ships s on c.class = s.class
-where s.launched >= 1922 and c.displacement > 35000 and c.type = 'bb'
+from Classes c 
+join Ships s on c.class = s.class
+where s.launched >= 1922 
+and c.displacement > 35000 
+and c.type = 'bb'
 
 Select country
 from Classes 
@@ -193,15 +223,18 @@ from Outcomes
 where ship like '% % %'
 
 select s.name
-from Ships s join Classes c on s.class = c.class
+from Ships s 
+join Classes c on s.class = c.class
 where c.bore = '16'
 union
 select o.ship
-from Outcomes o join Classes c on o.ship = c.class 
+from Outcomes o 
+join Classes c on o.ship = c.class 
 where c.bore = '16'
 
 select distinct o.battle
-from Ships s join Outcomes o on s.name = o.ship
+from Ships s 
+join Outcomes o on s.name = o.ship
 where s.class = 'Kongo'
 
 select type
@@ -210,23 +243,30 @@ where type like 'p%'
 
 select *
 from Product
-where model not in (select top 3 model
-from Product
-order by model desc) and model not in (select top 3 model
-from Product
-order by model asc)
+where model not in (
+    select top 3 model
+    from Product
+    order by model desc) 
+and model not in (
+    select top 3 model
+    from Product
+    order by model asc)
 
 select maker, count(model)
 from Product
 group by maker
-having count(model) in
-(
-select max(t) from (select count(model) t from Product group by maker) t1
-)
-or count(model) in
-(
-select min(t) from (select count(model) t from Product group by maker) t1
-)
+having count(model) in(
+    select max(t) 
+    from (
+        select count(model) t 
+        from Product 
+        group by maker) t1)
+or count(model) in(
+    select min(t) 
+    from (
+        select count(model) t 
+        from Product 
+        group by maker) t1)
 
 insert into PC (code, model, speed, ram, hd, cd, price)
 values (20, 2111, 950, 512, 60, '52x', 1100)
@@ -253,9 +293,13 @@ group by model
 
 delete from pc
 where 
-ram = (select min(ram) from pc) 
+ram = (
+    select min(ram) 
+    from pc) 
 or
-hd = (select min(hd) from pc)
+hd = (
+    select min(hd) 
+    from pc)
 
 update Product
 set maker = 'Z' 
@@ -288,14 +332,26 @@ where maker in ('E', 'B') and type = 'Laptop'
 )
 
 insert into Outcomes (ship, battle, result)
-select 'Rodney' ship, (select distinct name from Battles where date= '1944-10-25') battle, 'sunk' result
+select 'Rodney' ship, (
+    select distinct name 
+    from Battles 
+    where date= '1944-10-25') battle, 'sunk' result
 union 
-select 'Nelson', (select distinct name from Battles where date= '1945-01-28') , 'damaged'
+select 'Nelson', (
+    select distinct 
+    name from Battles 
+    where date= '1945-01-28') , 'damaged'
 
 insert into Outcomes (ship, battle, result)
 values 
-('Rodney', (select distinct name from Battles where date= '1944-10-25') , 'sunk'),
-('Nelson', (select distinct name from Battles where date= '1945-01-28') , 'damaged')
+('Rodney', (
+    select distinct name 
+    from Battles 
+    where date= '1944-10-25') , 'sunk'),
+('Nelson', (
+    select distinct name 
+    from Battles 
+    where date= '1945-01-28') , 'damaged')
 
 delete from Product
 where model not in (
@@ -437,7 +493,8 @@ select customerID cid, addres ads, postalcode pc
 from customer
 
 select * 
-from order o join customer c on o.customerID = c.customerID
+from order o 
+join customer c on o.customerID = c.customerID
 
 select country, count(customerID)
 from customer
@@ -538,7 +595,8 @@ from trip
 where plane = 'TU-134'
 
 select distinct name
-from trip t join company c on t.company = c.id
+from trip t 
+join company c on t.company = c.id
 where plane = 'Boeing'
 
 select distinct plane
@@ -553,7 +611,8 @@ where id = (
     where town_from = 'Vladivostok')
 
 select t.id, count(p.passenger) count
-from trip t left join Pass_in_trip p on t.id = p.trip
+from trip t left 
+join Pass_in_trip p on t.id = p.trip
 group by t.id
 
 select t.town_to
@@ -596,13 +655,21 @@ from student
 where first_name = 'Anna'
 
 select count(*) count 
-from class c join Student_in_class s on c.id = s.class
+from class c 
+join Student_in_class s on c.id = s.class
 where name like '10 B'
 
 select distinct t.start_pair
 from Schedule s 
 join Timepair t on s.number_pair = t.id
 where s.number_pair = 4
+
+update FamilyMembers
+set member_name = 'Andie Anthony'
+where member_name = 'Andie Quincey'
+
+delete from trip
+where town_from = 'Moscow'
 
 
 
