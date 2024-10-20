@@ -671,6 +671,25 @@ where member_name = 'Andie Quincey'
 delete from trip
 where town_from = 'Moscow'
 
+select last_name, first_name, birthday
+from student
+where birthday like '%-05-%'
+
+select sum(price * items) income_from_female
+from Purchases
+where user_gender in ('f', 'female')
+
+select c.name country_name
+from Countries c 
+join Regions r on c.id = r.countryid
+join Cities ci on r.id = ci.regionid
+where ci.name = 'Salzburg'
+
+select p.name 
+from Pilots p 
+join Flights f on p.pilot_id = f.second_pilot_id
+where flight_date like '2023-08-%' 
+and f.destination ='New York'
 
 
 
