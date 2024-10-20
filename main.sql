@@ -691,6 +691,38 @@ join Flights f on p.pilot_id = f.second_pilot_id
 where flight_date like '2023-08-%' 
 and f.destination ='New York'
 
+select town_to, time(time_in - time_out) flight_time
+from trip
+where town_from = 'Paris'
+
+select *
+from trip
+where time_out between 
+'1900-01-01T10:00:00.000Z' and '1900-01-01T14:00:00.000Z'
+
+select name
+from passenger
+group by name
+having count(name) >= 2
+
+select name, count(passenger) count
+from passenger p 
+join Pass_in_trip pt on p.id = pt.passenger
+group by name
+order by count desc, name asc
+
+select member_name, status, sum(p.unit_price*p.amount) costs
+from familymembers f 
+join Payments p on f.member_id = p.family_member
+where p.date like '2005%'
+group by member_name, status
+
+select member_name
+from FamilyMembers
+where birthday in (
+    select min(birthday) 
+    from FamilyMembers)
+
 
 
 
