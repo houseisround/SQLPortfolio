@@ -480,6 +480,46 @@ where country in ('Норвегия', 'Франция')
 select * from customer
 where country not in ('Норвегия', 'Франция')
 
+create database name1
+
+drop database name1
+
+create table name1 
+(
+    Id int,
+    FirstName varchar(30),
+    LastName varchar(30),
+    Email varchar(30),
+    Age int
+)
+
+drop table name1
+
+alter table name1 
+add address1 varchar(30)
+
+alter table name1
+drop column address1
+
+alter table name1
+rename colum address1 to city1
+
+alter table name1
+rename to name2
+
+insert into name1 (id, firstname, lastname, Email, Age)
+values 
+(1, 'Join', 'Right', 'rj@mail.ru', 24),
+(2, 'Join', 'Right', 'rj@mail.ru', 24),
+(3, 'Join', 'Right', 'rj@mail.ru', 24)
+
+update name1
+set firstname = 'Jhon'
+where firstname = 'Join'
+
+delete from name1 
+where firstname = 'Jhon'
+
 select * from Product
 where price between 10 and 20
 
@@ -722,6 +762,12 @@ from FamilyMembers
 where birthday in (
     select min(birthday) 
     from FamilyMembers)
+
+
+
+
+
+
 
 
 
