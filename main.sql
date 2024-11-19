@@ -763,6 +763,15 @@ where birthday in (
     select min(birthday) 
     from FamilyMembers)
 
+select party_rk,
+    case gender_cd
+        when 'M' then 'Мужской'
+        when 'F' then 'Женский'
+    end gender
+from person_party
+
+
+
 
 
 
