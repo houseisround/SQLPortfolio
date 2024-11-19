@@ -770,7 +770,15 @@ select party_rk,
     end gender
 from person_party
 
+select count(*)
+from table
 
+select count(gender)
+from table
+where gender = 'M'
+
+select count(distinct gender)
+from table
 
 
 
