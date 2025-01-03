@@ -23,3 +23,17 @@ SELECT name product_name,
 FROM   products
 ORDER BY price desc 
 limit 5;
+
+SELECT name,
+       length(name) name_length,
+       price
+FROM   products
+ORDER BY length(name) desc 
+limit 1;
+
+SELECT name,
+       split_part(upper(name), ' ', 1) first_word,
+       price
+FROM   products
+ORDER BY name;
+
