@@ -55,3 +55,13 @@ SELECT concat('Заказ № ',
               creation_time::date) order_info
 FROM   orders 
 limit 200;
+
+SELECT courier_id,
+       date_part('year', birth_date) birth_year
+FROM   couriers
+ORDER BY birth_year desc, courier_id
+
+SELECT courier_id,
+       coalesce(date_part('year', birth_date)::varchar, 'unknown') birth_year
+FROM   couriers
+ORDER BY birth_year desc, courier_id
