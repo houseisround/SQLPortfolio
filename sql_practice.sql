@@ -72,3 +72,40 @@ SELECT product_id,
        price * 1.05 as new_price
 FROM   products
 ORDER BY new_price desc, product_id;
+
+SELECT product_id,
+       name,
+       price as old_price,
+       round(price * 1.05, 1) as new_price
+FROM   products
+ORDER BY new_price desc, product_id;
+
+SELECT product_id,
+       name,
+       price AS old_price,
+       CASE 
+       WHEN name='икра' THEN price
+       WHEN price > 100 THEN price * 1.05
+       ELSE price
+       END AS new_price
+FROM products
+ORDER BY new_price DESC,
+         product_id;
+
+SELECT product_id,
+       name,
+       price,
+       ROUND(price / 120 * 20, 2) AS tax,
+       ROUND(price - price / 120 * 20, 2) AS price_before_tax
+FROM products
+ORDER BY price_before_tax DESC,
+         product_id;
+
+SELECT *
+FROM   products
+WHERE  price <= 100
+
+SELECT user_id
+FROM   users
+WHERE  sex = 'female'
+ORDER BY user_id limit 1000;
