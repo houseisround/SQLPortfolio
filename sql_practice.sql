@@ -109,3 +109,19 @@ SELECT user_id
 FROM   users
 WHERE  sex = 'female'
 ORDER BY user_id limit 1000;
+
+SELECT user_id,
+       order_id,
+       time
+FROM   user_actions
+WHERE  action = 'create_order'
+   and time >= '2022-09-06 00:00:00'
+ORDER BY order_id;
+
+SELECT product_id,
+       name,
+       price as old_price,
+       price * 0.8 as new_price
+FROM   products
+WHERE  price * 0.8 > 100
+ORDER BY product_id;
