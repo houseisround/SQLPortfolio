@@ -65,3 +65,10 @@ SELECT courier_id,
        coalesce(date_part('year', birth_date)::varchar, 'unknown') birth_year
 FROM   couriers
 ORDER BY birth_year desc, courier_id
+
+SELECT product_id,
+       name,
+       price as old_price,
+       price * 1.05 as new_price
+FROM   products
+ORDER BY new_price desc, product_id;
