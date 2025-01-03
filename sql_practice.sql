@@ -37,3 +37,14 @@ SELECT name,
 FROM   products
 ORDER BY name;
 
+SELECT name,
+       price,
+       price::varchar price_char
+FROM   products
+ORDER BY name;
+
+SELECT name,
+       price,
+       cast(price as varchar) as price_char
+FROM   products
+ORDER BY name
