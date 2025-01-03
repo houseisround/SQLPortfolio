@@ -48,3 +48,10 @@ SELECT name,
        cast(price as varchar) as price_char
 FROM   products
 ORDER BY name
+
+SELECT concat('Заказ № ',
+              order_id::varchar ,
+              ' создан ',
+              creation_time::date) order_info
+FROM   orders 
+limit 200;
