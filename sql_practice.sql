@@ -125,3 +125,15 @@ SELECT product_id,
 FROM   products
 WHERE  price * 0.8 > 100
 ORDER BY product_id;
+
+SELECT product_id,
+       name
+FROM   products
+WHERE  LOWER(SPLIT_PART(name, ' ', 1)) = 'чай'
+       OR LENGTH(name) = 5
+ORDER BY product_id;
+
+select product_id, name
+from products 
+where name like '%чай%'
+order by product_id
